@@ -10,7 +10,7 @@ import UIKit
 
 class ProjectsCollectionView: UICollectionViewController {
     
-    let myPortfolioUrl = "https://competent-borg-53474f.netlify.com"
+    let myPortfolioUrl = "https://objective-tereshkova-b3da7d.netlify.com"
     var factory : ProjectsFactory!
     
     override func viewDidLoad() {
