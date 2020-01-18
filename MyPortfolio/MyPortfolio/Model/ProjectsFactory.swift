@@ -48,8 +48,10 @@ class ProjectsFactory {
                             }
                         }
                         
-                        for img in articles.css("img"){
-                            imageUrl = img["src"]!
+                        for a in articles.css("a"){
+                            if a["class"] == "image fit"{
+                                imageUrl = a["href"]!
+                            }
                         }
                         
                         for p in articles.css("p"){
@@ -66,7 +68,7 @@ class ProjectsFactory {
                         
                         let project = Project(title: title, description: description, imageUrl: imageUrl, gitUrl: gitUrl)
                         self.projects.append(project)
-                        NotificationCenter.default.post(name: NSNotification.Name("projectUpdated"), object: nil)
+                        NotificationCenter.default.post(name: NSNotification.Name("articleUpdated"), object: nil)
                     }
                 }
             }

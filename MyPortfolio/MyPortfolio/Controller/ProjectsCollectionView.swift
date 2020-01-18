@@ -7,17 +7,15 @@
 //
 
 import UIKit
-import Alamofire
-
 
 class ProjectsCollectionView: UICollectionViewController {
     
-    let myPortfolioUrl = "https://inspiring-wilson-8f50be.netlify.com"
+    let myPortfolioUrl = "https://competent-borg-53474f.netlify.com"
     var factory : ProjectsFactory!
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        NotificationCenter.default.addObserver(self, selector: #selector(reloadItems), name: NSNotification.Name("projectUpdated"), object: nil)
+         NotificationCenter.default.addObserver(self, selector: #selector(self.reloadItems), name: NSNotification.Name("articleUpdated"), object: nil)
         factory = ProjectsFactory(pageUrl: myPortfolioUrl)
     }    
     
@@ -35,9 +33,12 @@ class ProjectsCollectionView: UICollectionViewController {
     
     override func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "ProjectCell", for: indexPath) as! ProjectCell
+        cell.layer.borderWidth = 2
+        cell.layer.cornerRadius = 10
+        cell.layer.borderColor = UIColor.lightGray.cgColor
         cell.titleLabel.text = factory.projects[indexPath.row].title
         cell.descriptionLabel.text = factory.projects[indexPath.row].description
-        cell.imageView.downloadFrom(link: factory.projects[indexPath.row].imageUrl)
+        cell.imageView.downloadedFrom(link: factory.projects[indexPath.row].imageUrl)
         return cell
     }
     
